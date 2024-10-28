@@ -1,4 +1,4 @@
-name: Run Vitest on push to main
+name: Test code on pull requests
 
 on:
   push:
