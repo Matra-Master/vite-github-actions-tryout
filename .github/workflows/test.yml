@@ -1,0 +1,21 @@
+name: Run Vitest on push to main
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  myNameIsBuild: #Actual job name
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx vitest run
+      # There can be a next step to make a test report as an articaft
+      # IF something fails you can check the reports in github's artifact repos
