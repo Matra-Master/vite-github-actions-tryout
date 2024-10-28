@@ -19,3 +19,8 @@ jobs:
         run: npm ci
       - name: "Build"
         run: npm run build
+      - name: "Save build artifacts"
+        uses: actions/upload-artifact@v4
+        with:
+          name: "Save Dist"
+          path: dist
