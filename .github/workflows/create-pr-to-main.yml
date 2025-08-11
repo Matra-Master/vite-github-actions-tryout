@@ -20,5 +20,5 @@ jobs:
         run: |
           gh pr create --title "Sync ${{ github.head_ref }} to Main" \
           --base "main" \
-          --head ${{ github.head_ref }}
+          --head "${{ github.head_ref }}" \
           --body "This PR was automatically created to sync changes from ${{ github.head_ref }} to Main."
