@@ -6,15 +6,16 @@ on:
     branches:
       - staging
 
+permissions:
+  pull-requests: write
+
 jobs:
-  create-pr:
+  double-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Create PR to Main
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: ${{ github.head_ref }}
-          destination_branch: "main"
-          pr_title: "Sync ${{ github.head_ref }} to Main"
-          pr_body: "This PR was automatically created to sync changes from ${{ github.head_ref }} to Main."
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --title "Sync ${{ github.head_ref }} to Main" \
+          --base "main" \
+          --body "This PR was automatically created to sync changes from ${{ github.head_ref }} to Main."
