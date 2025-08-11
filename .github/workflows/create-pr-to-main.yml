@@ -1,0 +1,20 @@
+name: Create PR to Main
+
+on:
+  pull_request:
+    types: [opened]
+    branches:
+      - staging
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create PR to Main
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ github.head_ref }}
+          destination_branch: "main"
+          pr_title: "Sync ${{ github.head_ref }} to Main"
+          pr_body: "This PR was automatically created to sync changes from ${{ github.head_ref }} to Main."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
